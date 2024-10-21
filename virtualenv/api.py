@@ -27,10 +27,7 @@ app = Flask(__name__)
 @app.route('/networks/<string:network_id>/<path:subpath>')
 def request_networks_meraki(network_id, subpath):
     # system arg needs either networks or organizations
-    if (subpath == 'traffic'):
-        url = f"{str(MERAKI_BASE_URL)}/networks/{network_id}/traffic?timespan=86400"
-    else:
-        url = f"{str(MERAKI_BASE_URL)}/networks/{network_id}/{escape(subpath)}"
+    url = f"{str(MERAKI_BASE_URL)}/networks/{network_id}/{escape(subpath)}"
         
     headers = {
         "Authorization": "Bearer " + str(API_KEY),
