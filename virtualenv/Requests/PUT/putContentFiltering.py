@@ -20,7 +20,7 @@ MERAKI_BASE_URL = 'https://api.meraki.com/api/v1'
 # Meraki & Envrionment variables
 API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
-NETWORK_ID = "L_744782788376408035"
+NETWORK_ID = "L_744782788376402478"
 
 # Update MX firewall rules
 def __update_Content_Filtering(apikey):
