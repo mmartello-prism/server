@@ -59,13 +59,13 @@ def __update_MX_Firewall_Rules(apikey):
         response = requests.put(str(url), headers=headers, data=payload)
         # Conditional check for response type
         if response.status_code == 200 or response.ok == True:
-            print(f"Response Success: {response.ok}\nResponse Code: {response.status_code}")
+            print(f"Response Success & code: {response.ok} : {response.status_code}")
             print("----------------------")
             print(f"Updated Network ID: {NETWORK_ID}\n")
             results = response.json() # Return results of response
             return results
         else: 
-            print(f"Response Success: {response.ok}\nResponse Code: {response.status_code}")
+            print(f"Response Success & code: {response.ok} : {response.status_code}")
             print(f'Response: {response.text.encode('utf8')}')
             results = response.text # Return results of response
             return results
@@ -76,7 +76,7 @@ def __update_MX_Firewall_Rules(apikey):
 # Main Method
 def main():
     print(text2art("Meraki API", font="small"))
-    print("Updating L7 Firewall Rules.....\n")
+    print("Updating L7 Firewall Rules......\n")
     __update_MX_Firewall_Rules(API_KEY)
 
 if __name__ == '__main__':
