@@ -20,7 +20,7 @@ MERAKI_BASE_URL = 'https://api.meraki.com/api/v1'
 # Meraki & Envrionment variables
 API_KEY = os.getenv('MERAKI_KEY')
 # NETWORK_ID = os.getenv('NJR_MORRISTOWN') # input network id
-NETWORK_ID = "L_744782788376407223"
+NETWORK_ID = "L_744782788376407570"
 # Declare uri string
 URI = 'syslogServers'
 
@@ -56,22 +56,22 @@ def __get_Syslog_Server(apikey):
         return None
 
 # Recursion Method to travse unknonwn depth of JSON object
-def __recursive_object_traversal(data, indent=int(0)):
+def __recursive_Object(data, indent=int(0)):
     # Dictionary check
     if isinstance(data, dict):
         for key, value in data.items():
             print(" " * indent + str(key) + ":")
-            __recursive_object_traversal(value, indent + 2)
+            __recursive_Object(value, indent + 2)
     # List check
     elif isinstance(data, list):
         for item in data:
-            __recursive_object_traversal(item, indent)
+            __recursive_Object(item, indent)
     else:
         print(" " * indent + str(data))
         
 # Main Method to execute script
 def main():
-    syslogServer = __recursive_object_traversal(__get_Syslog_Server(API_KEY), 0)
+    syslogServer = __recursive_Object(__get_Syslog_Server(API_KEY), 0)
     return syslogServer
 
 if __name__ == '__main__':

@@ -20,7 +20,7 @@ MERAKI_BASE_URL = 'https://api.meraki.com/api/v1'
 # Meraki & Envrionment variables
 API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
-NETWORK_ID = "L_744782788376402478"
+NETWORK_ID = "L_744782788376407570"
 
 # Update MX firewall rules
 def __update_Content_Filtering(apikey):
@@ -29,7 +29,7 @@ def __update_Content_Filtering(apikey):
 
     json_dict = {
         "allowedUrlPatterns": [
-            "https://intellechart.net"
+            "https://app1.intellechart.net/"
         ],
         "blockedUrlPatterns": [
             "drive.google.com",
@@ -41,7 +41,6 @@ def __update_Content_Filtering(apikey):
             "sling.com",
             "max.com",
             "hulu.com",
-            "tiktok.com"
         ],
         "blockedUrlCategories": [
             "meraki:contentFiltering/category/C6",
@@ -59,10 +58,6 @@ def __update_Content_Filtering(apikey):
             "meraki:contentFiltering/category/C49",
             "meraki:contentFiltering/category/C47",
             "meraki:contentFiltering/category/C36",
-            "meraki:contentFiltering/category/C34",
-            "meraki:contentFiltering/category/C36",
-            "meraki:contentFiltering/category/C36",
-            "meraki:contentFiltering/category/C36"
         ]
     }
 
