@@ -23,7 +23,7 @@ API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
 NETWORK_ID = 'L_744782788376408372'
 
-# Update MX firewall rules
+# Update SMNP settings
 def __update_SNMP(apikey):
 
     url = f'{str(MERAKI_BASE_URL)}/networks/{str(NETWORK_ID)}/snmp'
@@ -41,6 +41,7 @@ def __update_SNMP(apikey):
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
+
     # Try/Catch block for adding Firewall Rules
     try:
         response = requests.put(str(url), headers=headers, data=payload)

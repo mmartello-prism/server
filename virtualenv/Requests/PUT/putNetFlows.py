@@ -23,7 +23,7 @@ API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
 NETWORK_ID = 'L_744782788376408035'
 
-# Update MX firewall rules
+# Update Cisco Netflows
 def __update_NetFlows(apikey):
 
     url = f'{str(MERAKI_BASE_URL)}/networks/{str(NETWORK_ID)}/netflow'
@@ -44,7 +44,7 @@ def __update_NetFlows(apikey):
         'Accept': 'application/json'
     }
 
-    # Try/Catch block for adding Firewall Rules
+    # Try/Catch block for adding NetFlow configs
     try:
         response = requests.put(str(url), headers=headers, data=payload)
         # Conditional check for response type

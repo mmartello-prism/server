@@ -3,8 +3,8 @@
 # Filename: putl7FirewallsRules.py
 #
 # Authored by: Mike Martello
-# Date: 3/20/2024
-# Version: 1.1.0
+# Date: 12/18/2024
+# Version: 2.1.0
 #
 '''
 import os
@@ -20,10 +20,10 @@ MERAKI_BASE_URL = 'https://api.meraki.com/api/v1'
 # Meraki & Envrionment variables
 API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
-NETWORK_ID = 'L_744782788376407570'
+NETWORK_ID = 'L_744782788376402478'
 
-# Update MX firewall rules
-def __update_MX_Firewall_Rules(apikey):
+# Update MX L7 firewall rules
+def __update_L7_Firewall_Rules(apikey):
 
     url = f'{MERAKI_BASE_URL}/networks/{NETWORK_ID}/appliance/firewall/l7FirewallRules'
 
@@ -31,6 +31,7 @@ def __update_MX_Firewall_Rules(apikey):
         "rules": [
             {"policy":"deny", "type": "ipRange", "value": "157.254.165.47/32"},
             {"policy":"deny", "type": "host", "value": "grastoonm3vides.com"},
+            {"policy":"deny", "type": "blockedCountries", "value": ("BY", "CN", "KP", "RU")},
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/106", "name": "Apple file sharing"}},
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/9", "name": "Dropbox"}},
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/171", "name": "Box"}},
@@ -39,9 +40,6 @@ def __update_MX_Firewall_Rules(apikey):
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/36", "name": "hulu.com"}},
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/178", "name": "HBO GO"}},
             {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/1892", "name": "Sling"}},
-            # {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/2294", "name": "TikTok"}},
-            # {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/4", "name": "Gmail"}},
-            # {"policy":"deny", "type": "application", "value": {"id": "meraki:layer7/application/130", "name": "Yahoo Mail"}}
         ]
     }
 
@@ -59,7 +57,8 @@ def __update_MX_Firewall_Rules(apikey):
         response = requests.put(str(url), headers=headers, data=payload)
         # Conditional check for response type
         if response.status_code == 200 or response.ok == True:
-            print(f"Response Success & code: {response.ok} : {response.status_code}")
+            print(f"Response Success: {response.ok}")
+            print(f"Response Code: {response.status_code}")
             print("----------------------")
             print(f"Updated Network ID: {NETWORK_ID}\n")
             results = response.json() # Return results of response
@@ -77,7 +76,7 @@ def __update_MX_Firewall_Rules(apikey):
 def main():
     print(text2art("Meraki API", font="small"))
     print("Updating L7 Firewall Rules......\n")
-    __update_MX_Firewall_Rules(API_KEY)
+    __update_L7_Firewall_Rules(API_KEY)
 
 if __name__ == '__main__':
     main()

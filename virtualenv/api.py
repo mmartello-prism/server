@@ -50,7 +50,7 @@ def request_networks_meraki(network_id, subpath):
         response = requests.get(str(url), headers=headers)
         # Conditional check for response type
         if response.status_code == 200:
-            print("-----Returned Output:-----\n")
+            print("\n-----Returned Output:-----")
             results = response.json() # Return results of response
             return results
         elif response.status_code == 429:
@@ -79,7 +79,7 @@ def request_organizations_meraki(org_id, subpath):
         response = requests.get(str(url), headers=headers)
         # Conditional check for response type
         if response.status_code == 200:
-            print("-----Returned Output:-----\n")
+            print("\n-----Returned Output:-----")
             results = response.json() # Return results of response
             return results
         elif response.status_code == 429:
@@ -110,7 +110,7 @@ def request_total_device_count(subpath):
         response = response.get(str(url), headers=headers)
         # Conditional check for response type
         if response.status_code == 200:
-            print("-----Returned Output:-----\n")
+            print("\n-----Returned Output:-----")
             results = response.json() # Return results of response
             return results
         elif response.status_code == 429:

@@ -22,7 +22,7 @@ API_KEY = os.getenv('MERAKI_KEY')
 # Location network id
 NETWORK_ID = "L_744782788376407570"
 
-# Update MX firewall rules
+# Update Content Filtering
 def __update_Content_Filtering(apikey):
 
     url = f'{MERAKI_BASE_URL}/networks/{NETWORK_ID}/appliance/contentFiltering'
@@ -70,7 +70,7 @@ def __update_Content_Filtering(apikey):
         'Accept': 'application/json'
     }
 
-    # Try/Catch block for adding Firewall Rules
+    # Try/Catch block for adding Content Filtering
     try:
         response = requests.put(str(url), headers=headers, data=payload)
         # Conditional check for response type

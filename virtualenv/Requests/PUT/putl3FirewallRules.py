@@ -25,8 +25,8 @@ NETWORK_ID = "L_744782788376407223"
 # Appliance type
 LAYER_3 = 'l3FirewallRules'
 
-# Update MX firewall rules
-def __update_MX_Firewall_Rules(apikey):
+# Update MX L3 firewall rules
+def __update_L3_Firewall_Rules(apikey):
 
     url = f'{str(MERAKI_BASE_URL)}/networks/{str(NETWORK_ID)}/appliance/firewall/{str(LAYER_3)}'
 
@@ -71,7 +71,7 @@ def __update_MX_Firewall_Rules(apikey):
 def main():
     print(text2art("Meraki API", font="small"))
     print("Updating L3 Firewall Rules.....\n")
-    __update_MX_Firewall_Rules(API_KEY)
+    __update_L3_Firewall_Rules(API_KEY)
 
 if __name__ == '__main__':
     main()

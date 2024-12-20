@@ -23,7 +23,7 @@ hosts = Hosts(client_id=os.getenv("FALCON_CLIENT_ID"),
 # hosts = Hosts()
 
 # SEARCH_FILTER = "hostname-search-string"
-SEARCH_FILTER = 'SEC-ENG-CBO'
+SEARCH_FILTER = 'revenue-cbo-0092'
 
 # Retrieve a list of hosts that have a hostname that matches our search filter
 hosts_search_result = hosts.query_devices_by_filter(filter=f"hostname:*'*{SEARCH_FILTER}*'")
@@ -35,11 +35,20 @@ if hosts_search_result["status_code"] == 200:
     if hosts_found:
         # Retrieve the details for all matches
         hosts_detail = hosts.get_device_details(ids=hosts_found)["body"]["resources"]
+        print(hosts_detail)
         for detail in hosts_detail:
             # Display the AID and hostname for this match
             aid = detail["device_id"]
             hostname = detail["hostname"]
-            print(f"\nHostname: {hostname}\naid: ({aid})\n")
+            status = detail["status"]
+            mac_address = detail["mac_address"]
+            first_seen = detail["first_seen"]
+            connection_ip = detail["connection_ip"]
+            chassis_type_desc = detail["chassis_type_desc"]
+            system_manufacturer = detail["system_manufacturer"]
+            os_product_name = detail["os_product_name"]
+
+            print(f"\nHostname: {hostname}\naid: ({aid})\nStatus: {status}\nMac Address: {mac_address}\nFirst Seen: {first_seen}\nConnection IP: {connection_ip}\nChassis Type: {chassis_type_desc}\nSystem Manufacturer: {system_manufacturer}\nOperating Sytem: {os_product_name}\n")
     else:
         print("No hosts found matching that hostname within your Falcon tenant.")
 else:

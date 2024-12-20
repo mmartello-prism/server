@@ -45,10 +45,11 @@ def __get_Syslog_Server(apikey):
         if response.status_code == 200 or response.ok == True:
             print(f"Response Success: {response.ok}\nResponse Code: {response.status_code}")
             print("----------------------------------\n")
-            results = response.json() # Return results of response
+            results = response.json() # Return json of response
             return results
         else: 
             print(f"Response Success: {response.ok}\nResponse Code: {response.status_code}")
+            print(f'Response: {response.text.encode('utf8')}')
             results = response.text # Return results of response
             return results
     except requests.exceptions.RequestException as e:
